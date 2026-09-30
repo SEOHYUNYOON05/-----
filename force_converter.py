@@ -1,3 +1,4 @@
+import math
 import tkinter as tk
 from tkinter import ttk
 
@@ -12,8 +13,8 @@ def convert_force():
         
     try:
         val = float(value_str)
-        if val < 0:
-            lbl_result.config(text=lbl_result.cget("text") + "\n\n⚠️ 힘의 크기는 0 이상이어야 합니다.", fg="red")
+        if not math.isfinite(val) or val < 0:
+            lbl_result.config(text=lbl_result.cget("text") + "\n\n⚠️ 힘은 유한한 0 이상의 숫자여야 합니다.", fg="red")
             return
 
         # 기준 단위(kN)로 환산
